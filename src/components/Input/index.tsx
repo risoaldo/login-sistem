@@ -9,21 +9,25 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
 }
 
-const Input: React.FC<InputProps> = ({name, ...rest }) => {
-  const inputRef = useRef(null);
+const Input: React.FC<InputProps> = ({ name, ...rest }) => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const { fieldName, defaultValue, error, registerField } = useField(name);
 
-  useEffect( () => { 
+  useEffect(() => {
     registerField({
       name: fieldName,
       ref: inputRef.current,
-      path: 'value'
+      path: 'value',
     });
-  },[fieldName, registerField]);
+  }, [fieldName, registerField]);
 
   return (
     <Container>
-      <input ref={inputRef} {...rest} />
+      <input
+        defaultValue={defaultValue}
+        ref={inputRef}
+        {...rest}
+      />
     </Container>
   );
 }

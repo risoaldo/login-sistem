@@ -20,7 +20,7 @@ const Login: React.FC = () => {
         <label>Password</label>
         <Input name="password" type="password" />
 
-        <Button> Entrar </Button>
+        <Button type="submit"> Entrar </Button>
       </Form>
     </>
   );
